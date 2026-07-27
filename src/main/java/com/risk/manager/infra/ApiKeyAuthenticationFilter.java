@@ -46,7 +46,11 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if(MessageDigest.isEqual(hash, keyDigest)){
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken("risk-engine", null, List.of(new SimpleGrantedAuthority("SYSTEM_ROLE"));
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                    "risk-engine",
+                    null,
+                    List.of(new SimpleGrantedAuthority("SYSTEM_ROLE"))
+            );
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         }else{
