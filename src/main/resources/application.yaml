@@ -1,8 +1,13 @@
 spring:
   application:
     name: manager
+  api:
+    key: ${API_KEY}
   rabbitmq:
     host: localhost
     port: 5672
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
+
+jwt:
+  secret: ${JWT_SECRET}

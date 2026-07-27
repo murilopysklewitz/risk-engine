@@ -13,4 +13,5 @@ public record TransactionCompletedDTO(@NotNull String sourceEmail,
                                       @NotNull UUID destinationUserId,
                                       @NotNull BigDecimal amount,
                                       @NotNull String type,
-                                      @NotNull LocalDateTime completedAt) { }
+                                      @NotNull LocalDateTime completedAt,
+                                      @NotNull String ipAddress) { }
