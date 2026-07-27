@@ -5,6 +5,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -12,6 +15,7 @@ import javax.security.sasl.AuthenticationException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Component
 public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
@@ -42,6 +46,8 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if(MessageDigest.isEqual(hash, keyDigest)){
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken("risk-engine", null, List.of(new SimpleGrantedAuthority("SYSTEM_ROLE"));
+            SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         }else{
             response.setStatus(401);
