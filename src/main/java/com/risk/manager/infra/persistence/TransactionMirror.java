@@ -1,16 +1,16 @@
-package com.risk.manager.domain;
+package com.risk.manager.infra.persistence;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "transaction_mirror")
+@Table(name = "transaction_mirror", indexes = {
+        @Index(name = "source_user_id_idx", columnList = "source_user_id")
+})
 public class TransactionMirror {
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -23,16 +23,28 @@ public class TransactionMirror {
     private BigDecimal amount;
     @Column(name = "ip_address", nullable = false)
     private String ipAddress;
+    @Column(name = "created_at", nullable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
-    public TransactionMirror(UUID id, UUID sourceUserId, UUID destinationUserId, BigDecimal amount, String ipAddress) {
+    public TransactionMirror(UUID id, UUID sourceUserId, UUID destinationUserId, BigDecimal amount, LocalDateTime createdAt, String ipAddress) {
         Id = id;
         this.sourceUserId = sourceUserId;
         this.destinationUserId = destinationUserId;
         this.amount = amount;
+        this.createdAt = createdAt;
         this.ipAddress = ipAddress;
     }
 
     public TransactionMirror() {
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public UUID getId() {

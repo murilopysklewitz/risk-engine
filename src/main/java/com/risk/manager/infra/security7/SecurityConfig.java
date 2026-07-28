@@ -1,6 +1,5 @@
-package com.risk.manager.infra;
+package com.risk.manager.infra.security7;
 
-import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;

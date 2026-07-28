@@ -1,6 +1,5 @@
-package com.risk.manager.infra;
+package com.risk.manager.infra.persistence;
 
-import com.risk.manager.domain.TransactionMirror;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
