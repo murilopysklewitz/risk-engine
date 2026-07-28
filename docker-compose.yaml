@@ -1,0 +1,18 @@
+services:
+  app:
+    build: ./
+    container_name: risk-api
+    ports:
+      - "3002:8082"
+    environment:
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      API_KEY: ${API_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+    env_file:
+      - manager/.env
+    networks:
+      - risk-engine
+networks:
+  risk-engine:
+    driver: bridge
