@@ -1,5 +1,6 @@
 package com.risk.manager.infra.persistence;
 
+import com.risk.manager.domain.RiskAssessment;
 import com.risk.manager.domain.ports.RiskAssessmentRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,15 +11,18 @@ import java.util.UUID;
 @Repository
 public class RiskAssessmentRepositoryImpl implements RiskAssessmentRepository {
     private SpringJpaRiskAssessmentRepository repository;
+    private RiskAssessmentMapper mapper;
 
-    public RiskAssessmentRepositoryImpl(SpringJpaRiskAssessmentRepository repository) {
+    public RiskAssessmentRepositoryImpl(SpringJpaRiskAssessmentRepository repository, RiskAssessmentMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
 
     @Override
-    public void save(RiskAssessmentEntity riskAssessment) {
-
+    public void save(RiskAssessment riskAssessment) {
+        RiskAssessmentEntity entity = mapper.toEntity(riskAssessment);
+        repository.save(entity);
     }
 
     @Override
@@ -27,7 +31,7 @@ public class RiskAssessmentRepositoryImpl implements RiskAssessmentRepository {
     }
 
     @Override
-    public Optional<RiskAssessmentEntity> findById(UUID assessmentId) {
+    public Optional<RiskAssessment> findById(UUID assessmentId) {
         return Optional.empty();
     }
 }

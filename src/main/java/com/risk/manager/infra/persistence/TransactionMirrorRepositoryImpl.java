@@ -15,28 +15,28 @@ public class TransactionMirrorRepositoryImpl implements TransactionMirrorReposit
     }
 
     @Override
-    public void save(TransactionMirror transactionMirror) {
-
+    public void save(TransactionMirrorEntity transactionMirror) {
+        repository.save(transactionMirror);
 
     }
 
     @Override
-    public List<TransactionMirror> findBySourceUserId(UUID id) {
+    public List<TransactionMirrorEntity> findBySourceUserId(UUID id) {
         return List.of();
     }
 
     @Override
-    public List<TransactionMirror> findByDestinationUserId(UUID id) {
+    public List<TransactionMirrorEntity> findByDestinationUserId(UUID id) {
         return List.of();
     }
 
     @Override
-    public List<TransactionMirror> findByIpAddress(String ipAddress) {
+    public List<TransactionMirrorEntity> findByIpAddress(String ipAddress) {
         return List.of();
     }
 
     @Override
-    public List<TransactionMirror> findTop20BySenderIdOrderByCreatedAtDesc(UUID senderId, int limit) {
+    public List<TransactionMirrorEntity> findTopXBySourceUserIdOrderByCreatedAtDesc(UUID sourceUserId, int limit) {
         return List.of();
     }
 }

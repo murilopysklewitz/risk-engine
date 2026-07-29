@@ -8,8 +8,8 @@ import java.awt.print.Pageable;
 import java.util.List;
 import java.util.UUID;
 
-public interface SpringJpaTransactionMirrorRepository extends JpaRepository<TransactionMirror, UUID> {
-    @Query("SELECT t FROM TransactionMirror t WHERE t.sourceUserId = :sourceUserId ORDER BY t.createdAt DESC")
-    List<TransactionMirror> findTopXBySourceUserIdOrderByCreatedAtDesc(@Param("senderId") UUID sourceUserId, Pageable pageable);
+public interface SpringJpaTransactionMirrorRepository extends JpaRepository<TransactionMirrorEntity, UUID> {
+    @Query("SELECT t FROM TransactionMirrorEntity t WHERE t.sourceUserId = :sourceUserId ORDER BY t.createdAt DESC")
+    List<TransactionMirrorEntity> findTopXBySourceUserIdOrderByCreatedAtDesc(@Param("senderId") UUID sourceUserId, Pageable pageable);
 
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Table(name = "transaction_mirror", indexes = {
         @Index(name = "source_user_id_idx", columnList = "source_user_id")
 })
-public class TransactionMirror {
+public class TransactionMirrorEntity {
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private UUID Id;
@@ -27,7 +27,7 @@ public class TransactionMirror {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public TransactionMirror(UUID id, UUID sourceUserId, UUID destinationUserId, BigDecimal amount, LocalDateTime createdAt, String ipAddress) {
+    public TransactionMirrorEntity(UUID id, UUID sourceUserId, UUID destinationUserId, BigDecimal amount, LocalDateTime createdAt, String ipAddress) {
         Id = id;
         this.sourceUserId = sourceUserId;
         this.destinationUserId = destinationUserId;
@@ -36,7 +36,7 @@ public class TransactionMirror {
         this.ipAddress = ipAddress;
     }
 
-    public TransactionMirror() {
+    public TransactionMirrorEntity() {
     }
 
     public LocalDateTime getCreatedAt() {
