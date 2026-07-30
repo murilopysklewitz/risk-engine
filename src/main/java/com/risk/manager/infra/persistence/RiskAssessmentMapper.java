@@ -9,6 +9,7 @@ public class RiskAssessmentMapper {
     public RiskAssessment toDomain(RiskAssessmentEntity entity){
         RiskAssessment domain = RiskAssessment.restore(
                 entity.getId(),
+                entity.getTransactionId(),
                 entity.getScore(),
                 entity.getTriggeredRules(),
                 entity.getDecision(),
@@ -20,6 +21,7 @@ public class RiskAssessmentMapper {
     public RiskAssessmentEntity toEntity(RiskAssessment domain){
         return new RiskAssessmentEntity(
                 domain.getId(),
+                domain.getTransactionId(),
                 domain.getScore(),
                 domain.getTriggeredRules(),
                 domain.getDecision(),

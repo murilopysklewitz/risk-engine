@@ -12,6 +12,7 @@ import java.util.UUID;
 @Entity(name = "RiskAssessment")
 @Table(name = "risk_assessment", indexes = {
         @Index(name = "id_idx", columnList = "id"),
+        @Index(name = "transaction_id_idx", columnList = "transaction_id"),
         @Index(name = "decision_idx", columnList = "decision"),
         @Index(name = "score_idx", columnList = "score"),
         @Index(name = "created_at_idx", columnList = "created_at")
@@ -36,8 +37,9 @@ public class RiskAssessmentEntity {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public RiskAssessmentEntity(UUID id, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public RiskAssessmentEntity(UUID id,UUID transactionId, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
+        this.transactionId = transactionId;
         this.score = score;
         this.triggeredRules = triggeredRules;
         this.decision = decision;
@@ -46,6 +48,10 @@ public class RiskAssessmentEntity {
     }
 
     public RiskAssessmentEntity() {
+    }
+
+    public UUID getTransactionId() {
+        return transactionId;
     }
 
     public UUID getId() {

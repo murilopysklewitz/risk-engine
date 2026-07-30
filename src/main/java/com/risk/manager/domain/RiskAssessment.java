@@ -18,8 +18,9 @@ public class RiskAssessment {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private RiskAssessment(UUID id, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    private RiskAssessment(UUID id, UUID transactionId, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
+        this.transactionId = transactionId;
         this.score = score;
         this.triggeredRules = triggeredRules;
         this.decision = decision;
@@ -48,6 +49,7 @@ public class RiskAssessment {
 
         return new RiskAssessment(
                 UUID.randomUUID(),
+                transactionId,
                 score,
                 triggeredRules,
                 assessmentDecision,
@@ -55,8 +57,8 @@ public class RiskAssessment {
                 LocalDateTime.now()
         );
     }
-    public static RiskAssessment restore(UUID id, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt){
-        return new RiskAssessment(id,score,triggeredRules,decision,createdAt,updatedAt);
+    public static RiskAssessment restore(UUID id, UUID transactionId, int score, List<String> triggeredRules, AssessmentDecision decision, LocalDateTime createdAt, LocalDateTime updatedAt){
+        return new RiskAssessment(id, transactionId, score,triggeredRules,decision,createdAt,updatedAt);
     }
 
     public UUID getId() {
